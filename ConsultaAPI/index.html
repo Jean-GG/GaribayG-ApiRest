@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razas de Perros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .breed-info {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Razas de Perros</h1>
+    <input type="text" id="queryInput" placeholder="Ingresa el nombre de la raza">
+    <button id="fetchBtn">Consultar API</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('fetchBtn').addEventListener('click', () => {
+            const query = document.getElementById('queryInput').value.toLowerCase();
+
+            if (!query) {
+                document.getElementById('result').textContent = 'Por favor, ingresa un término de búsqueda.';
+                return;
+            }
+
+            // URL de la API con la consulta del usuario
+            const apiUrl = `https://api.thedogapi.com/v1/breeds`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = '';
+
+                    // Filtrar razas según la consulta
+                    const filteredBreeds = data.filter(breed => breed.name.toLowerCase().includes(query));
+
+                    if (filteredBreeds.length > 0) {
+                        filteredBreeds.forEach(breed => {
+                            const breedInfo = `
+                                <div class="breed-info">
+                                    <h2>${breed.name}</h2>
+                                    <p><strong>Origen:</strong> ${breed.origin || 'Desconocido'}</p>
+                                    <p><strong>Temperamento:</strong> ${breed.temperament}</p>
+                                    ${breed.image ? `<img src="${breed.image.url}" alt="${breed.name}" style="max-width: 100%; height: auto;"/>` : ''}
+                                </div>
+                            `;
+                            resultDiv.innerHTML += breedInfo;
+                        });
+                    } else {
+                        resultDiv.textContent = 'No se encontraron resultados para tu búsqueda.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al consultar la API:', error);
+                    document.getElementById('result').textContent = 'Error al consultar la API';
+                });
+        });
+    </script>
+
+</body>
+</html>

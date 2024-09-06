@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST</title>
+    <form target="resultado" method="get" action="http://localhost:3001">
+        <button id="btnForm" type="submit">Get</button>
+        <button id="btnJs" type="button">GetJS</button>
+    </form>
+    <iframe name="resultado"></iframe>
+
+    <script>
+        document.getElementById("btnJs").addEventListener("click",()=>{
+            let vurl = 'http://localhost:3001';
+            fetch(vurl)
+            .then(res=>res.text())
+            .then(dato=>{console.log(dato)
+            })
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

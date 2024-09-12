@@ -57,32 +57,45 @@ app.get('/clientes', (req, res) => {
     });
 });
 
-
 app.post('/clientes', (req, res) => {
     const { nombre } = req.body;
+
+    // Validación
+    if (!nombre) {
+        return res.status(400).json({ error: 'El campo nombre es obligatorio' });
+    }
+
     const consulta = 'INSERT INTO clientes (nombre) VALUES (?)';
 
     connection.query(consulta, [nombre], (err, results) => {
         if (err) {
             console.error('Error al insertar datos:', err);
-            res.status(500).json({ error: 'Error en la base de datos' });
-        } else {
-            res.json({ mensaje: 'Cliente insertado con éxito', id: results.insertId });
+            return res.status(500).json({ error: 'Error en la base de datos' });
         }
+
+        res.status(201).json({ mensaje: 'Cliente insertado con éxito', id: results.insertId });
     });
 });
 
-app.put('/clientes/:id', (req, res) => {
-    const id = req.params.id;
-    const { nombre } = req.body;
-    const consulta = 'UPDATE clientes SET nombre = ? WHERE id = ?';
 
-    connection.query(consulta, [nombre, id], (err, results) => {
+app.delete('/clientes', (req, res) => {
+    const id = req.query.id;
+
+    // Validacion de que ocupa un id
+    if (!id) {
+        return res.status(400).json({ error: 'El parámetro id es obligatorio' });
+    }
+
+    const consulta = 'DELETE FROM clientes WHERE id = ?';
+
+    connection.query(consulta, [id], (err, results) => {
         if (err) {
-            console.error('Error al actualizar datos:', err);
+            console.error('Error al eliminar el cliente:', err);
             res.status(500).json({ error: 'Error en la base de datos' });
+        } else if (results.affectedRows === 0) {
+            res.status(404).json({ mensaje: 'Cliente no encontrado' });
         } else {
-            res.json({ mensaje: 'Cliente actualizado con éxito' });
+            res.json({ mensaje: 'Cliente eliminado con éxito' });
         }
     });
 });

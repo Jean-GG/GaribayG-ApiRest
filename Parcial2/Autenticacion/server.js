@@ -3,15 +3,20 @@ const cors = require('cors');
 const basicAuth = require('express-basic-auth');
 const app = express() 
 
-app.use(cors()) //Middleware de Terceros
+app.use(cors())
 
-app.use(express.json()); //Middleware Incorporado
+app.use(express.json());
 
 const port = 3001
 
-app.use(basicAuth({
-    users: { 'admin': 'supersecret' }
+app.use(basicAuth({ //Autenticacion Basica
+    users: { 'admin': 'supersecret' },
+    challenge: true
 }))
+
+app.get('/', (req, res) => { // Ruta protegida
+    res.send(`Bienvenido, ${req.auth.user}! Ingresaste exitosamente.`);
+  });
 
 app.get('/clientes/:id',cors(),(req,res)=> {
     console.log(req.params)

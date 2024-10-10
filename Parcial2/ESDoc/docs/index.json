@@ -1,0 +1,82 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "name": "src/areaCirculo.js",
+    "content": "/**\r\n * Calcula el área de un círculo dado su radio.\r\n *\r\n * @param {number} radio - El radio del círculo.\r\n * @returns {number} El área del círculo.\r\n * @throws {Error} Si el radio no es un número positivo.\r\n * \r\n * @example\r\n * import { calcularAreaCirculo } from './calculoAreaCirculo.js';\r\n * const area = calcularAreaCirculo(5);\r\n * console.log(area); // 78.53981633974483\r\n */\r\nexport function calcularAreaCirculo(radio) {\r\n    if (radio <= 0 || isNaN(radio)) {\r\n        throw new Error(\"El radio debe ser un número positivo.\");\r\n    }\r\n    return Math.PI * Math.pow(radio, 2);\r\n}\r\n",
+    "static": true,
+    "longname": "C:/Users/Halog/Documents/API-Rest/Parcial2/ESDoc/src/areaCirculo.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 1,
+    "kind": "function",
+    "name": "calcularAreaCirculo",
+    "memberof": "src/areaCirculo.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/areaCirculo.js~calcularAreaCirculo",
+    "access": null,
+    "export": true,
+    "importPath": "esdoc/src/areaCirculo.js",
+    "importStyle": "{calcularAreaCirculo}",
+    "description": "Calcula el área de un círculo dado su radio.",
+    "examples": [
+      "import { calcularAreaCirculo } from './calculoAreaCirculo.js';\nconst area = calcularAreaCirculo(5);\nconsole.log(area); // 78.53981633974483"
+    ],
+    "lineNumber": 13,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{number} El área del círculo."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "radio",
+        "description": "El radio del círculo."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "El área del círculo."
+    },
+    "throws": [
+      {
+        "types": [
+          "Error"
+        ],
+        "description": "Si el radio no es un número positivo."
+      }
+    ]
+  },
+  {
+    "kind": "index",
+    "content": "# Documentación del Módulo Suma\r\n\r\nEste proyecto contiene un módulo JavaScript que proporciona una función para sumar dos números. La documentación se genera utilizando JSDoc.",
+    "longname": "C:\\Users\\Halog\\Documents\\API-Rest\\Parcial2\\ESDoc\\README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"esdoc\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"areaCirculo.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"docs\": \"esdoc\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-publish-markdown-plugin\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\"\n  }\n}\n",
+    "longname": "C:\\Users\\Halog\\Documents\\API-Rest\\Parcial2\\ESDoc\\package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]

@@ -39,7 +39,12 @@ app.listen(port, () => {
   console.log('Servidor iniciado en http://localhost:3001');
 });
 
+/*
+Ejemplo
+{ 
+  "username": "JeanGaribay",
+  "email": "Jean@gmail.com",
+  "password": "password123"
+}
 
-
-
-
+*/

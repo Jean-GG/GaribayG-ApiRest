@@ -7,7 +7,7 @@ const { expect } = chai;
 chai.use(chaiHttp);
 
 describe('GET /inicio', () => {
-  it('should return a greeting message', (done) => {
+  it('Revisar que el servidor me de un 200', (done) => {
     chai
       .request(app)
       .get('/inicio')

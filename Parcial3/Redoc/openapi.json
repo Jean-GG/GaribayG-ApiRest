@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Ejemplo",
+      "version": "1.0.0",
+      "description": "Documentación de API generada con Redoc"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor local"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Usuarios",
+        "description": "Operaciones relacionadas con usuarios"
+      },
+      {
+        "name": "Productos",
+        "description": "Operaciones relacionadas con productos"
+      }
+    ],
+    "paths": {
+      "/usuarios": {
+        "get": {
+          "tags": ["Usuarios"],
+          "summary": "Obtener lista de usuarios",
+          "responses": {
+            "200": {
+              "description": "Lista de usuarios",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Usuario"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Usuario": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1
+            },
+            "nombre": {
+              "type": "string",
+              "example": "Juan Pérez"
+            },
+            "email": {
+              "type": "string",
+              "example": "juan.perez@example.com"
+            }
+          }
+        }
+      }
+    }
+  }
+  
